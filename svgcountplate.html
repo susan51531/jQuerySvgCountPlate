@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SvgCountPlate</title>
+    <style>
+    html,body {
+        margin: 0;
+        padding: 0;
+    }
+    #svg_test{
+        width: 500px;
+        height: 500px;
+        margin: 50px auto 0;
+        outline: 1px dashed lime;
+    }
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script src="jquery.svgcountplate.js"></script>
+    <script>
+        $(function(){
+            var progress = 0;
+            var svgCountPlate = $('#svg_test').svgCountPlate({
+                radius: 200,
+                cartoonStepRatio: 1
+            }).data('_svgCountPlate');
+
+            setInterval(function(){
+                svgCountPlate.update(progress ++)
+            },1000);
+            
+        })
+    </script>
+</head>
+<body>
+    <div id="svg_test">
+    </div>
+</body>
+</html>
