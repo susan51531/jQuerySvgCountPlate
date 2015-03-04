@@ -88,16 +88,14 @@
 
         var arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
 
-        var d = [
+        return [
             "M", start.x, start.y, 
             "A", radius, radius, 0, arcSweep, 1, end.x, end.y
         ].join(" ");
-
-        return d;
     }
     
     $.fn.svgCountPlate = function(option){
-        var config = $.extend({}, DefaultConf, option)
+        var config = $.extend({}, DefaultConf, option);
         return $(this).each(function(){
             var $this = $(this),
                 plate = $this.data('_svgCountPlate'),
@@ -143,10 +141,13 @@
 
                 plate = {
                     update: function(progress){
-                        var progress =progress <= config.maxNum? progress:progress % config.maxNum,
-                            progressedScaleCount = progress !== config.maxNum ? Math.floor(progress/config.maxNum*config.scaleCount):config.scaleCount,
-                            scaleDeg = 360/config.scaleCount;
+                        var progressedScaleCount,
+                            scaleDeg;
 
+
+                        progress =progress <= config.maxNum? progress:progress % config.maxNum;
+                        progressedScaleCount = progress !== config.maxNum ? Math.floor(progress/config.maxNum*config.scaleCount):config.scaleCount;
+                        scaleDeg = 360/config.scaleCount;
                         apllyProgress(0, 
                             progressedScaleCount,
                             config.scaleColor,
@@ -164,6 +165,6 @@
             }
 
         });
-    }
+    };
 
 })(jQuery);
