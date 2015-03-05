@@ -96,7 +96,7 @@
     
     $.fn.svgCountPlate = function(option){
         var config = $.extend({}, DefaultConf, option);
-        return $(this).each(function(){
+        return this.each(function(){
             var $this = $(this),
                 plate = $this.data('_svgCountPlate'),
                 svg,
